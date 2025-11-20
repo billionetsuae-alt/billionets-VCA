@@ -211,8 +211,45 @@ export default function Page() {
           </div>
         </section>
 
+        {/* What We Provide Section */}
+        <section style={styles.whatWeProvide} className="responsive-section">
+          <h2 style={styles.sectionTitle}>What We Provide</h2>
+          <div style={styles.provideGrid}>
+            <div style={styles.provideCard}>
+              <div style={styles.provideIcon}>🌐</div>
+              <h3 style={styles.provideTitle}>Multi-lingual Support</h3>
+              <p style={styles.provideText}>Engage a global audience with fluent support for 26 languages, breaking down all communication barriers.</p>
+            </div>
+            <div style={styles.provideCard}>
+              <div style={styles.provideIcon}>🧠</div>
+              <h3 style={styles.provideTitle}>Knowledge RAG</h3>
+              <p style={styles.provideText}>Our agent learns everything about your business, providing accurate and context-aware responses instantly.</p>
+            </div>
+            <div style={styles.provideCard}>
+              <div style={styles.provideIcon}>📊</div>
+              <h3 style={styles.provideTitle}>Conversation Analytics</h3>
+              <p style={styles.provideText}>Gain deep insights from call data with advanced analytics to understand customer sentiment and trends.</p>
+            </div>
+            <div style={styles.provideCard}>
+              <div style={styles.provideIcon}>📲</div>
+              <h3 style={styles.provideTitle}>Call Transferring</h3>
+              <p style={styles.provideText}>Seamlessly transfer calls from the AI agent to a human operator for complex issue resolution.</p>
+            </div>
+            <div style={styles.provideCard}>
+              <div style={styles.provideIcon}>🗣️</div>
+              <h3 style={styles.provideTitle}>Voice Cloning</h3>
+              <p style={styles.provideText}>Create a unique brand identity with a custom-cloned voice that perfectly matches your brand's persona.</p>
+            </div>
+            <div style={styles.provideCard}>
+              <div style={styles.provideIcon}>🗂️</div>
+              <h3 style={styles.provideTitle}>Advanced CRM Integration</h3>
+              <p style={styles.provideText}>Automatically collect and sync user data with your CRM, streamlining your sales and support workflows.</p>
+            </div>
+          </div>
+        </section>
+
         {/* Use Cases Section */}
-        <section style={styles.useCases}>
+        <section style={styles.useCases} className="responsive-section">
           <h2 style={styles.sectionTitle}>Perfect For Every Industry</h2>
           <div style={styles.useCaseGrid}>
             <div style={styles.useCaseCard}>
@@ -606,9 +643,44 @@ const styles: { [key: string]: React.CSSProperties } = {
     color: '#6b7280',
     lineHeight: '1.6',
   },
-  useCases: {
+  whatWeProvide: {
     padding: '5rem 2rem',
     backgroundColor: 'white',
+  },
+  provideGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    gap: '2rem',
+    maxWidth: '1200px',
+    margin: '0 auto',
+  },
+  provideCard: {
+    backgroundColor: '#f9fafb',
+    padding: '2.5rem 2rem',
+    borderRadius: '16px',
+    border: '1px solid #e5e7eb',
+    textAlign: 'center',
+    transition: 'transform 0.3s, box-shadow 0.3s',
+  },
+  provideIcon: {
+    fontSize: '3rem',
+    marginBottom: '1.5rem',
+    lineHeight: '1',
+  },
+  provideTitle: {
+    fontSize: '1.5rem',
+    fontWeight: '600',
+    marginBottom: '1rem',
+    color: '#1f2937',
+  },
+  provideText: {
+    color: '#6b7280',
+    lineHeight: '1.6',
+    fontSize: '0.95rem',
+  },
+  useCases: {
+    padding: '5rem 2rem',
+    backgroundColor: '#f9fafb',
   },
   useCaseGrid: {
     display: 'grid',
