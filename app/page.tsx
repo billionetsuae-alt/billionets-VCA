@@ -345,7 +345,7 @@ export default function Page() {
           </p>
         </div>
 
-        <div style={styles.controls}>
+        <div style={styles.controls} className="responsive-controls">
           <div style={styles.statusBadge}>
             <span style={{...styles.statusIndicator, backgroundColor: getStatusColor(callStatus)}}></span>
             Status: <strong>{callStatus}</strong>
@@ -432,6 +432,11 @@ export default function Page() {
             }
             .responsive-nav-content {
               padding: 1rem !important;
+            }
+            .responsive-controls {
+              flex-direction: column;
+              gap: 1rem;
+              align-items: stretch;
             }
           }
         `}</style>
