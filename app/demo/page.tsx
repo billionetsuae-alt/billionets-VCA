@@ -91,15 +91,15 @@ const DemoPage = () => {
       <h1 style={styles.title}>Choose Your Demo</h1>
       <p style={styles.subtitle}>Explore the powerful capabilities of Billionets A.I.</p>
       <div style={styles.optionsGrid} className="options-grid-responsive">
+        <Link href="/demo/try" style={styles.optionCard} className="option-card">
+          <div style={styles.optionIcon}>🤖</div>
+          <h2 style={styles.optionTitle}>Try Billionets A.I. Voice</h2>
+          <p style={styles.optionDescription}>Instantly interact with our pre-trained Billionets A.I. to experience its intelligence and human-like interaction firsthand.</p>
+        </Link>
         <Link href="/demo/create-agent" style={styles.optionCard} className="option-card">
           <div style={styles.optionIcon}>✨</div>
           <h2 style={styles.optionTitle}>Create Your Own Agent</h2>
           <p style={styles.optionDescription}>Train a custom AI agent by providing your website URL. The agent will learn from your content to answer questions accurately.</p>
-        </Link>
-        <Link href="/demo/try" style={styles.optionCard} className="option-card">
-          <div style={styles.optionIcon}>🤖</div>
-          <h2 style={styles.optionTitle}>Try Billionets A.I.</h2>
-          <p style={styles.optionDescription}>Engage in a live voice conversation with our pre-trained Billionets A.I. to experience its intelligence and human-like interaction firsthand.</p>
         </Link>
       </div>
     </div>
