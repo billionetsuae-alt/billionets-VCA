@@ -182,8 +182,8 @@ export default function Page() {
                 }
               }}
             >
-              <div style={styles.logoIcon} className="logo-icon-container">
-                <AnimatedIcon Icon={Mic2} size={28} variant="glow" />
+              <div style={styles.logoIcon} className="logo-icon-container logoIcon">
+                <AnimatedIcon Icon={Mic2} size={24} variant="glow" />
               </div>
               <span style={styles.logoText}>BILLIONETS A.I</span>
             </a>
