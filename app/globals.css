@@ -110,11 +110,31 @@ svg {
 
 /* Mobile Navigation */
 .mobile-nav {
-  display: block;
+  display: flex;
+  align-items: center;
 }
 
 .desktop-nav {
   display: none;
+}
+
+/* Smooth scrollbar for mobile menu */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.5);
 }
 
 /* Mobile: Hide floating elements */
@@ -185,22 +205,50 @@ svg {
 @media (min-width: 1024px) {
   /* Show desktop nav, hide mobile */
   .desktop-nav {
-    display: flex;
+    display: flex !important;
+    align-items: center;
+    gap: 1rem;
   }
   
   .mobile-nav {
-    display: none;
+    display: none !important;
   }
   
   /* Navigation spacing */
   nav .navContent {
-    padding: 1.5rem 3rem !important;
+    padding: 1rem 3rem !important;
   }
   
   /* Logo size */
   .logo {
-    font-size: 1.5rem !important;
+    font-size: 1.25rem !important;
     gap: 0.75rem !important;
+  }
+  
+  /* Logo icon size on desktop */
+  .logo .logoIcon {
+    padding: 0.5rem !important;
+  }
+  
+  /* Navigation hover effects */
+  nav a {
+    position: relative;
+  }
+  
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+  
+  nav a:hover::after {
+    width: 80%;
   }
   
   /* Hero section */

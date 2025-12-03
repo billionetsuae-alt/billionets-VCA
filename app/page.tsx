@@ -164,18 +164,106 @@ export default function Page() {
         {/* Navigation */}
         <nav style={styles.nav}>
           <div style={styles.navContent}>
-            <div style={styles.logo}>
-              <div style={styles.logoIcon}>
+            <a 
+              href="/"
+              style={styles.logo}
+              onMouseEnter={(e) => {
+                const icon = e.currentTarget.querySelector('.logo-icon-container') as HTMLElement;
+                if (icon) {
+                  icon.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.5)';
+                  icon.style.transform = 'scale(1.05)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                const icon = e.currentTarget.querySelector('.logo-icon-container') as HTMLElement;
+                if (icon) {
+                  icon.style.boxShadow = 'none';
+                  icon.style.transform = 'scale(1)';
+                }
+              }}
+            >
+              <div style={styles.logoIcon} className="logo-icon-container">
                 <AnimatedIcon Icon={Mic2} size={28} variant="glow" />
               </div>
               <span style={styles.logoText}>BILLIONETS A.I</span>
-            </div>
+            </a>
             {/* Desktop Nav */}
             <div style={styles.navLinks} className="desktop-nav">
-              <a href="#features" style={styles.navLink}>Features</a>
-              <a href="#use-cases" style={styles.navLink}>Use Cases</a>
-              <a href="/demo" style={styles.navLink}>Demo</a>
-              <a href="/contact" style={styles.navLink}>Contact</a>
+              <a 
+                href="#features" 
+                style={styles.navLink}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#d4af37';
+                  e.currentTarget.style.background = 'rgba(212, 175, 55, 0.1)';
+                  e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+                  e.currentTarget.style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.85)';
+                  e.currentTarget.style.background = 'transparent';
+                  e.currentTarget.style.borderColor = 'transparent';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                Features
+              </a>
+              <a 
+                href="#use-cases" 
+                style={styles.navLink}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#d4af37';
+                  e.currentTarget.style.background = 'rgba(212, 175, 55, 0.1)';
+                  e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+                  e.currentTarget.style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.85)';
+                  e.currentTarget.style.background = 'transparent';
+                  e.currentTarget.style.borderColor = 'transparent';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                Use Cases
+              </a>
+              <a 
+                href="/demo" 
+                style={{
+                  ...styles.navLink,
+                  background: 'linear-gradient(135deg, #d4af37 0%, #c9a332 100%)',
+                  color: '#000000',
+                  fontWeight: '700',
+                  boxShadow: '0 0 20px rgba(212, 175, 55, 0.3)',
+                  border: 'none',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 0 30px rgba(212, 175, 55, 0.5)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.3)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                Demo
+              </a>
+              <a 
+                href="/contact" 
+                style={styles.navLink}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#d4af37';
+                  e.currentTarget.style.background = 'rgba(212, 175, 55, 0.1)';
+                  e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+                  e.currentTarget.style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.85)';
+                  e.currentTarget.style.background = 'transparent';
+                  e.currentTarget.style.borderColor = 'transparent';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                Contact
+              </a>
             </div>
             {/* Mobile Nav */}
             <div className="mobile-nav">
@@ -632,16 +720,19 @@ const styles: { [key: string]: React.CSSProperties } = {
     backgroundColor: '#000000',
   },
   nav: {
-    borderBottom: '1px solid rgba(212, 175, 55, 0.2)',
-    backgroundColor: '#000000',
+    borderBottom: '1px solid rgba(212, 175, 55, 0.15)',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    backdropFilter: 'blur(20px)',
+    WebkitBackdropFilter: 'blur(20px)',
     position: 'sticky',
     top: 0,
     zIndex: 50,
+    boxShadow: '0 4px 30px rgba(0, 0, 0, 0.3)',
   },
   navContent: {
     maxWidth: '1400px',
     margin: '0 auto',
-    padding: '1rem 1.25rem',
+    padding: '0.875rem 1.25rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -649,35 +740,48 @@ const styles: { [key: string]: React.CSSProperties } = {
   logo: {
     display: 'flex',
     alignItems: 'center',
-    gap: '0.5rem',
+    gap: '0.65rem',
     fontSize: '1.1rem',
-    fontWeight: 'bold',
+    fontWeight: '800',
     color: '#ffffff',
+    cursor: 'pointer',
+    transition: 'all 0.3s',
+    textDecoration: 'none',
   },
   logoIcon: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: '0.4rem',
+    background: 'rgba(212, 175, 55, 0.1)',
+    border: '1px solid rgba(212, 175, 55, 0.3)',
+    borderRadius: '10px',
+    transition: 'all 0.3s',
   },
   logoText: {
-    background: 'linear-gradient(135deg, #d4af37 0%, #f4e5a1 100%)',
+    background: 'linear-gradient(135deg, #d4af37 0%, #f4e5a1 50%, #d4af37 100%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
-    letterSpacing: '0.05em',
+    letterSpacing: '0.08em',
+    textShadow: '0 0 20px rgba(212, 175, 55, 0.3)',
   },
   navLinks: {
     display: 'flex',
-    gap: '2.5rem',
+    gap: '1rem',
     alignItems: 'center',
   },
   navLink: {
-    color: '#ffffff',
+    color: 'rgba(255, 255, 255, 0.85)',
     textDecoration: 'none',
     fontSize: '0.95rem',
-    fontWeight: '500',
-    transition: 'color 0.3s',
+    fontWeight: '600',
+    transition: 'all 0.3s ease',
     letterSpacing: '0.02em',
+    padding: '0.6rem 1.25rem',
+    borderRadius: '10px',
+    border: '1px solid transparent',
+    position: 'relative',
   },
   hero: {
     background: '#000000',
