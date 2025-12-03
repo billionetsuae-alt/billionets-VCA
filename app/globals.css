@@ -427,3 +427,126 @@ body {
     font-size: 16px !important;
   }
 }
+
+/* ========================================
+   DEMO PAGE SPECIFIC STYLES
+   ======================================== */
+
+/* Demo cards grid - mobile first */
+.demo-options-grid {
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* Demo card hover effects */
+.demo-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.demo-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+}
+
+/* Tablet: 2 columns for demo cards */
+@media (min-width: 768px) {
+  .demo-options-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Desktop: maintain 2 columns with better spacing */
+@media (min-width: 1024px) {
+  .demo-options-grid {
+    gap: 2.5rem;
+  }
+  
+  .demo-card:hover {
+    transform: translateY(-10px) scale(1.03);
+  }
+}
+
+/* ========================================
+   CONTACT PAGE SPECIFIC STYLES
+   ======================================== */
+
+/* Contact container - mobile first */
+.contact-container-grid {
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* Tablet: 2 columns for contact page */
+@media (min-width: 768px) {
+  .contact-container-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+  
+  .contact-hero-title {
+    font-size: 2.5rem !important;
+  }
+}
+
+/* Desktop: better spacing */
+@media (min-width: 1024px) {
+  .contact-container-grid {
+    gap: 3rem;
+  }
+  
+  .contact-hero-title {
+    font-size: 3rem !important;
+  }
+  
+  .contact-section {
+    padding: 5rem 2rem !important;
+  }
+}
+
+/* ========================================
+   TRY DEMO PAGE SPECIFIC STYLES
+   ======================================== */
+
+/* Mobile: Stack horizontal controls vertically on small screens */
+@media (max-width: 640px) {
+  .horizontal-controls-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem !important;
+  }
+  
+  .horizontal-controls-container .icon-section {
+    margin-bottom: 0.5rem;
+  }
+  
+  .horizontal-controls-container .status-badge {
+    width: 100%;
+  }
+  
+  .horizontal-controls-container button {
+    width: 100%;
+  }
+}
+
+/* Tablet and Desktop: Keep horizontal layout */
+@media (min-width: 641px) {
+  .horizontal-controls-container {
+    flex-wrap: nowrap !important;
+  }
+  
+  .horizontal-controls-container .icon-section {
+    min-width: 110px;
+  }
+  
+  .horizontal-controls-container .status-badge {
+    min-width: 180px;
+  }
+}
+
+/* Large Desktop: Extra spacing */
+@media (min-width: 1024px) {
+  .horizontal-controls-container {
+    gap: 3rem !important;
+  }
+}

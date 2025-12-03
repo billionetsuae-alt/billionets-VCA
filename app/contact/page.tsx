@@ -1,10 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import AnimatedIcon from '../components/AnimatedIcon';
+import MobileNav from '../components/MobileNav';
+import FloatingBlobs from '../components/FloatingBlobs';
+import { Mic2, MapPin, Mail, Phone, Clock } from 'lucide-react';
 
 export default function ContactPage() {
-  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -61,45 +64,120 @@ export default function ContactPage() {
 
   return (
     <div style={styles.container}>
-      <style jsx global>{`
-        body {
-          overflow-x: hidden;
-        }
-        @media (max-width: 950px) {
-          .responsive-contact-container {
-            grid-template-columns: 1fr !important;
-          }
-        }
-        @media (max-width: 768px) {
-          .responsive-contact-section {
-            padding: 3rem 1rem !important;
-          }
-          .responsive-contact-hero {
-            padding: 3rem 1rem !important;
-          }
-          .responsive-contact-form {
-            padding: 1.5rem !important;
-          }
-          .responsive-contact-title {
-            font-size: 2rem !important;
-          }
-        }
-      `}</style>
       {/* Navigation */}
       <nav style={styles.nav}>
         <div style={styles.navContent}>
-          <div onClick={() => router.push('/')} style={{...styles.logo, cursor: 'pointer'}}>
-            <div style={styles.logoIcon}>🎙️</div>
-            <span style={styles.logoText}>Billionets A.I</span>
+          <Link 
+            href="/"
+            style={styles.logo}
+            onMouseEnter={(e) => {
+              const icon = e.currentTarget.querySelector('.logo-icon-container') as HTMLElement;
+              if (icon) {
+                icon.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.5)';
+                icon.style.transform = 'scale(1.05)';
+              }
+            }}
+            onMouseLeave={(e) => {
+              const icon = e.currentTarget.querySelector('.logo-icon-container') as HTMLElement;
+              if (icon) {
+                icon.style.boxShadow = 'none';
+                icon.style.transform = 'scale(1)';
+              }
+            }}
+          >
+            <div style={styles.logoIcon} className="logo-icon-container logoIcon">
+              <AnimatedIcon Icon={Mic2} size={24} variant="glow" />
+            </div>
+            <span style={styles.logoText}>BILLIONETS A.I</span>
+          </Link>
+          {/* Desktop Nav */}
+          <div style={styles.navLinks} className="desktop-nav">
+            <Link 
+              href="/#features" 
+              style={styles.navLink}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#d4af37';
+                e.currentTarget.style.background = 'rgba(212, 175, 55, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.85)';
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.borderColor = 'transparent';
+              }}
+            >
+              Features
+            </Link>
+            <Link 
+              href="/#use-cases" 
+              style={styles.navLink}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#d4af37';
+                e.currentTarget.style.background = 'rgba(212, 175, 55, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.85)';
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.borderColor = 'transparent';
+              }}
+            >
+              Use Cases
+            </Link>
+            <Link 
+              href="/demo" 
+              style={styles.navLink}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#d4af37';
+                e.currentTarget.style.background = 'rgba(212, 175, 55, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.85)';
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.borderColor = 'transparent';
+              }}
+            >
+              Demo
+            </Link>
+            <Link 
+              href="/" 
+              style={styles.navLink}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#d4af37';
+                e.currentTarget.style.background = 'rgba(212, 175, 55, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.85)';
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.borderColor = 'transparent';
+              }}
+            >
+              Home
+            </Link>
           </div>
-          <button onClick={() => router.push('/')} style={styles.navButton}>← Back to Home</button>
+          {/* Mobile Nav */}
+          <div className="mobile-nav">
+            <MobileNav 
+              navLinks={[
+                { href: '/#features', label: 'Features' },
+                { href: '/#use-cases', label: 'Use Cases' },
+                { href: '/demo', label: 'Demo' },
+                { href: '/', label: 'Home' },
+              ]}
+            />
+          </div>
         </div>
       </nav>
 
       {/* Hero Section */}
       <section style={styles.hero}>
+        <FloatingBlobs />
         <div style={styles.heroContent}>
-          <h1 style={styles.heroTitle}>Get in Touch</h1>
+          <h1 style={styles.heroTitle} className="contact-hero-title">
+            Get in <span style={styles.heroTitleGold}>Touch</span>
+          </h1>
           <p style={styles.heroSubtitle}>
             Let's discuss how Billionets A.I can transform your business
           </p>
@@ -107,8 +185,8 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Section */}
-      <section style={styles.contactSection}>
-        <div style={styles.contactContainer}>
+      <section style={styles.contactSection} className="contact-section">
+        <div style={styles.contactContainer} className="contact-container-grid">
           {/* Contact Form */}
           <div style={styles.formWrapper}>
             <h2 style={styles.formTitle}>Send us a Message</h2>
@@ -212,7 +290,9 @@ export default function ContactPage() {
             <div style={styles.infoItems}>
               {/* Office Address */}
               <div style={styles.infoItem}>
-                <div style={styles.infoIcon}>📍</div>
+                <div style={styles.infoIcon}>
+                  <AnimatedIcon Icon={MapPin} size={28} color="#d4af37" variant="pulse" />
+                </div>
                 <div>
                   <h3 style={styles.infoItemTitle}>Office Address</h3>
                   <p style={styles.infoItemText}>
@@ -226,7 +306,9 @@ export default function ContactPage() {
 
               {/* Email */}
               <div style={styles.infoItem}>
-                <div style={styles.infoIcon}>✉️</div>
+                <div style={styles.infoIcon}>
+                  <AnimatedIcon Icon={Mail} size={28} color="#d4af37" variant="glow" />
+                </div>
                 <div>
                   <h3 style={styles.infoItemTitle}>Email</h3>
                   <a href="mailto:info@billionets.com" style={styles.infoLink}>
@@ -237,7 +319,9 @@ export default function ContactPage() {
 
               {/* Phone */}
               <div style={styles.infoItem}>
-                <div style={styles.infoIcon}>📞</div>
+                <div style={styles.infoIcon}>
+                  <AnimatedIcon Icon={Phone} size={28} color="#d4af37" variant="bounce" />
+                </div>
                 <div>
                   <h3 style={styles.infoItemTitle}>Phone</h3>
                   <a href="tel:+971543219060" style={styles.infoLink}>
@@ -248,7 +332,9 @@ export default function ContactPage() {
 
               {/* Business Hours */}
               <div style={styles.infoItem}>
-                <div style={styles.infoIcon}>🕐</div>
+                <div style={styles.infoIcon}>
+                  <AnimatedIcon Icon={Clock} size={28} color="#d4af37" variant="3d" />
+                </div>
                 <div>
                   <h3 style={styles.infoItemTitle}>Business Hours</h3>
                   <p style={styles.infoItemText}>
@@ -274,19 +360,22 @@ const styles: { [key: string]: React.CSSProperties } = {
   container: {
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     minHeight: '100vh',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#000000',
   },
   nav: {
-    borderBottom: '1px solid #e5e7eb',
-    backgroundColor: 'white',
+    borderBottom: '1px solid rgba(212, 175, 55, 0.15)',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    backdropFilter: 'blur(20px)',
+    WebkitBackdropFilter: 'blur(20px)',
     position: 'sticky',
     top: 0,
     zIndex: 50,
+    boxShadow: '0 4px 30px rgba(0, 0, 0, 0.3)',
   },
   navContent: {
-    maxWidth: '1200px',
+    maxWidth: '1400px',
     margin: '0 auto',
-    padding: '1rem 2rem',
+    padding: '0.875rem 1.25rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -294,74 +383,103 @@ const styles: { [key: string]: React.CSSProperties } = {
   logo: {
     display: 'flex',
     alignItems: 'center',
-    gap: '0.75rem',
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    color: '#1f2937',
+    gap: '0.65rem',
+    fontSize: '1.1rem',
+    fontWeight: '800',
+    color: '#ffffff',
+    cursor: 'pointer',
+    transition: 'all 0.3s',
+    textDecoration: 'none',
   },
   logoIcon: {
-    fontSize: '2rem',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '0.4rem',
+    background: 'rgba(212, 175, 55, 0.1)',
+    border: '1px solid rgba(212, 175, 55, 0.3)',
+    borderRadius: '10px',
+    transition: 'all 0.3s',
   },
   logoText: {
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    background: 'linear-gradient(135deg, #d4af37 0%, #f4e5a1 50%, #d4af37 100%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
+    letterSpacing: '0.08em',
+    textShadow: '0 0 20px rgba(212, 175, 55, 0.3)',
   },
-  navButton: {
-    padding: '0.625rem 1.5rem',
-    fontSize: '1rem',
-    border: '2px solid #667eea',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    backgroundColor: 'white',
-    color: '#667eea',
+  navLinks: {
+    display: 'flex',
+    gap: '1rem',
+    alignItems: 'center',
+  },
+  navLink: {
+    color: 'rgba(255, 255, 255, 0.85)',
+    textDecoration: 'none',
+    fontSize: '0.95rem',
     fontWeight: '600',
-    transition: 'all 0.3s',
+    transition: 'all 0.3s ease',
+    letterSpacing: '0.02em',
+    padding: '0.6rem 1.25rem',
+    borderRadius: '10px',
+    border: '1px solid transparent',
+    position: 'relative',
   },
   hero: {
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    background: '#000000',
     color: 'white',
-    padding: '4rem 2rem',
+    padding: '4rem 1.25rem 5rem',
     textAlign: 'center',
+    position: 'relative',
+    overflow: 'hidden',
   },
   heroContent: {
     maxWidth: '800px',
     margin: '0 auto',
+    position: 'relative',
+    zIndex: 2,
   },
   heroTitle: {
-    fontSize: '3rem',
-    fontWeight: 'bold',
+    fontSize: '2rem',
+    fontWeight: '700',
     marginBottom: '1rem',
-    lineHeight: '1.2',
+    lineHeight: '1.3',
+    color: '#ffffff',
+  },
+  heroTitleGold: {
+    background: 'linear-gradient(135deg, #d4af37 0%, #f4e5a1 50%, #d4af37 100%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
   },
   heroSubtitle: {
-    fontSize: '1.25rem',
-    opacity: 0.95,
+    fontSize: '0.95rem',
+    color: 'rgba(255, 255, 255, 0.7)',
     lineHeight: '1.6',
   },
   contactSection: {
-    padding: '5rem 2rem',
-    backgroundColor: '#f9fafb',
+    padding: '3rem 1.25rem',
+    backgroundColor: '#0a0a0a',
   },
   contactContainer: {
     maxWidth: '1200px',
     margin: '0 auto',
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-    gap: '3rem',
+    gridTemplateColumns: '1fr',
+    gap: '2rem',
   },
   formWrapper: {
-    backgroundColor: 'white',
-    padding: '2.5rem',
-    borderRadius: '16px',
-    border: '1px solid #e5e7eb',
-    boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
+    background: 'linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%)',
+    padding: '2rem 1.5rem',
+    borderRadius: '20px',
+    border: '1px solid rgba(212, 175, 55, 0.2)',
+    boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)',
   },
   formTitle: {
-    fontSize: '2rem',
-    fontWeight: 'bold',
-    color: '#1f2937',
+    fontSize: '1.5rem',
+    fontWeight: '700',
+    color: '#d4af37',
     marginBottom: '1.5rem',
   },
   form: {
@@ -375,27 +493,27 @@ const styles: { [key: string]: React.CSSProperties } = {
     gap: '0.5rem',
   },
   label: {
-    fontSize: '0.95rem',
+    fontSize: '0.9rem',
     fontWeight: '600',
-    color: '#4b5563',
+    color: 'rgba(255, 255, 255, 0.8)',
   },
   input: {
     padding: '0.875rem 1rem',
     fontSize: '1rem',
-    border: '2px solid #e5e7eb',
-    borderRadius: '8px',
-    backgroundColor: '#ffffff',
-    color: '#1f2937',
+    border: '1px solid rgba(212, 175, 55, 0.2)',
+    borderRadius: '10px',
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    color: '#ffffff',
     transition: 'all 0.3s',
     outline: 'none',
   },
   textarea: {
     padding: '0.875rem 1rem',
     fontSize: '1rem',
-    border: '2px solid #e5e7eb',
-    borderRadius: '8px',
-    backgroundColor: '#ffffff',
-    color: '#1f2937',
+    border: '1px solid rgba(212, 175, 55, 0.2)',
+    borderRadius: '10px',
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    color: '#ffffff',
     transition: 'all 0.3s',
     outline: 'none',
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
@@ -403,49 +521,49 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   submitButton: {
     padding: '1rem 2rem',
-    fontSize: '1.125rem',
+    fontSize: '1rem',
     border: 'none',
-    borderRadius: '10px',
+    borderRadius: '12px',
     cursor: 'pointer',
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    color: '#ffffff',
-    fontWeight: 'bold',
+    background: 'linear-gradient(135deg, #d4af37 0%, #c9a332 100%)',
+    color: '#000000',
+    fontWeight: '700',
     transition: 'all 0.3s',
-    boxShadow: '0 4px 15px rgba(102, 126, 234, 0.3)',
+    boxShadow: '0 0 30px rgba(212, 175, 55, 0.4)',
     marginTop: '0.5rem',
   },
   successMessage: {
     padding: '1rem',
-    backgroundColor: '#064e3b',
-    color: '#d1fae5',
-    borderRadius: '8px',
-    border: '1px solid #10b981',
+    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+    color: '#10b981',
+    borderRadius: '10px',
+    border: '1px solid rgba(16, 185, 129, 0.3)',
     fontSize: '0.95rem',
   },
   errorMessage: {
     padding: '1rem',
-    backgroundColor: '#7f1d1d',
-    color: '#fecaca',
-    borderRadius: '8px',
-    border: '1px solid #ef4444',
+    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+    color: '#ef4444',
+    borderRadius: '10px',
+    border: '1px solid rgba(239, 68, 68, 0.3)',
     fontSize: '0.95rem',
   },
   infoWrapper: {
-    backgroundColor: 'white',
-    padding: '2.5rem',
-    borderRadius: '16px',
-    border: '1px solid #e5e7eb',
-    boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
+    background: 'linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%)',
+    padding: '2rem 1.5rem',
+    borderRadius: '20px',
+    border: '1px solid rgba(212, 175, 55, 0.2)',
+    boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)',
   },
   infoTitle: {
-    fontSize: '2rem',
-    fontWeight: 'bold',
-    color: '#1f2937',
+    fontSize: '1.5rem',
+    fontWeight: '700',
+    color: '#d4af37',
     marginBottom: '1rem',
   },
   infoDescription: {
-    color: '#6b7280',
-    fontSize: '1rem',
+    color: 'rgba(255, 255, 255, 0.7)',
+    fontSize: '0.95rem',
     lineHeight: '1.6',
     marginBottom: '2rem',
   },
@@ -460,32 +578,34 @@ const styles: { [key: string]: React.CSSProperties } = {
     alignItems: 'flex-start',
   },
   infoIcon: {
-    fontSize: '2rem',
-    minWidth: '3rem',
-    textAlign: 'center',
+    minWidth: '2.5rem',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   infoItemTitle: {
-    fontSize: '1.125rem',
+    fontSize: '1.05rem',
     fontWeight: '600',
-    color: '#667eea',
+    color: '#d4af37',
     marginBottom: '0.5rem',
   },
   infoItemText: {
-    color: '#4b5563',
+    color: 'rgba(255, 255, 255, 0.7)',
     lineHeight: '1.6',
     margin: 0,
+    fontSize: '0.9rem',
   },
   infoLink: {
-    color: '#667eea',
+    color: '#d4af37',
     textDecoration: 'none',
-    fontSize: '1rem',
+    fontSize: '0.95rem',
     transition: 'all 0.3s',
   },
   footer: {
-    padding: '2rem',
+    padding: '2rem 1.25rem',
     textAlign: 'center',
-    borderTop: '1px solid #e5e7eb',
-    color: '#6b7280',
-    backgroundColor: '#ffffff',
+    borderTop: '1px solid rgba(212, 175, 55, 0.15)',
+    color: 'rgba(255, 255, 255, 0.5)',
+    backgroundColor: '#000000',
   },
 };
