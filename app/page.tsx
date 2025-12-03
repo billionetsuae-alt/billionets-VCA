@@ -396,42 +396,50 @@ export default function Page() {
           <AnimatedSection direction="up" delay={0.2}>
             <h2 style={styles.sectionTitle}>Advanced Features</h2>
           </AnimatedSection>
-          <div style={styles.provideGrid} className="provide-grid">
-            <ScrollReveal direction="left" delay={0.1}>
-              <div style={styles.provideCard} className="provide-card">
-                <div style={styles.provideIconGold}>
-                  <AnimatedIcon Icon={BarChart3} size={56} variant="bounce" />
+          <div style={styles.provideGrid} className="feature-grid">
+            <ScrollReveal direction="up" delay={0.1}>
+              <GlassCard className="feature-card">
+                <div style={styles.featureCard}>
+                  <div style={styles.featureIconContainer}>
+                    <AnimatedIcon Icon={BarChart3} size={52} variant="bounce" />
+                  </div>
+                  <h3 style={styles.featureTitle}>Conversation Analytics</h3>
+                  <p style={styles.featureText}>Deep insights from call data to understand customer sentiment and behavior patterns.</p>
                 </div>
-                <h3 style={styles.provideTitle}>Conversation Analytics</h3>
-                <p style={styles.provideText}>Deep insights from call data to understand customer sentiment and behavior patterns.</p>
-              </div>
+              </GlassCard>
             </ScrollReveal>
-            <ScrollReveal direction="left" delay={0.2}>
-              <div style={styles.provideCard} className="provide-card">
-                <div style={styles.provideIconGold}>
-                  <AnimatedIcon Icon={PhoneCall} size={56} variant="pulse" />
+            <ScrollReveal direction="up" delay={0.2}>
+              <GlassCard className="feature-card">
+                <div style={styles.featureCard}>
+                  <div style={styles.featureIconContainer}>
+                    <AnimatedIcon Icon={PhoneCall} size={52} variant="pulse" />
+                  </div>
+                  <h3 style={styles.featureTitle}>Smart Call Transfer</h3>
+                  <p style={styles.featureText}>Seamlessly transition from AI to human agents when needed.</p>
                 </div>
-                <h3 style={styles.provideTitle}>Smart Call Transfer</h3>
-                <p style={styles.provideText}>Seamlessly transition from AI to human agents when needed.</p>
-              </div>
+              </GlassCard>
             </ScrollReveal>
-            <ScrollReveal direction="left" delay={0.3}>
-              <div style={styles.provideCard} className="provide-card">
-                <div style={styles.provideIconGold}>
-                  <AnimatedIcon Icon={Waves} size={56} variant="glow" />
+            <ScrollReveal direction="up" delay={0.3}>
+              <GlassCard className="feature-card">
+                <div style={styles.featureCard}>
+                  <div style={styles.featureIconContainer}>
+                    <AnimatedIcon Icon={Waves} size={52} variant="glow" />
+                  </div>
+                  <h3 style={styles.featureTitle}>Voice Cloning</h3>
+                  <p style={styles.featureText}>Custom-branded voice that matches your company's unique identity.</p>
                 </div>
-                <h3 style={styles.provideTitle}>Voice Cloning</h3>
-                <p style={styles.provideText}>Custom-branded voice that matches your company's unique identity.</p>
-              </div>
+              </GlassCard>
             </ScrollReveal>
-            <ScrollReveal direction="left" delay={0.4}>
-              <div style={styles.provideCard} className="provide-card">
-                <div style={styles.provideIconGold}>
-                  <AnimatedIcon Icon={Building2} size={56} variant="3d" />
+            <ScrollReveal direction="up" delay={0.4}>
+              <GlassCard className="feature-card">
+                <div style={styles.featureCard}>
+                  <div style={styles.featureIconContainer}>
+                    <AnimatedIcon Icon={Building2} size={52} variant="3d" />
+                  </div>
+                  <h3 style={styles.featureTitle}>CRM Integration</h3>
+                  <p style={styles.featureText}>Automatic data sync with your existing CRM and business tools.</p>
                 </div>
-                <h3 style={styles.provideTitle}>CRM Integration</h3>
-                <p style={styles.provideText}>Automatic data sync with your existing CRM and business tools.</p>
-              </div>
+              </GlassCard>
             </ScrollReveal>
           </div>
         </section>
@@ -441,50 +449,58 @@ export default function Page() {
           <AnimatedSection direction="up" delay={0.2}>
             <h2 style={styles.sectionTitle}>Industries We Transform</h2>
           </AnimatedSection>
-          <div style={styles.useCaseGrid} className="use-case-grid">
-            <ScrollReveal direction="scale" delay={0.1}>
-              <div style={styles.useCaseCard} className="use-case-card">
-                <div style={styles.useCaseIconWrapper}>
-                  <AnimatedIcon Icon={Stethoscope} size={40} color="#d4af37" variant="pulse" />
+          <div style={styles.useCaseGrid} className="feature-grid">
+            <ScrollReveal direction="up" delay={0.1}>
+              <GlassCard className="feature-card">
+                <div style={styles.featureCard}>
+                  <div style={styles.featureIconContainer}>
+                    <AnimatedIcon Icon={Stethoscope} size={52} variant="pulse" />
+                  </div>
+                  <h3 style={styles.featureTitle}>Healthcare</h3>
+                  <p style={styles.featureText}>
+                    Patient intake, appointment scheduling, and 24/7 medical support with HIPAA compliance.
+                  </p>
                 </div>
-                <h3 style={styles.useCaseTitle}>Healthcare</h3>
-                <p style={styles.useCaseText}>
-                  Patient intake, appointment scheduling, and 24/7 medical support with HIPAA compliance.
-                </p>
-              </div>
+              </GlassCard>
             </ScrollReveal>
-            <ScrollReveal direction="scale" delay={0.2}>
-              <div style={styles.useCaseCard} className="use-case-card">
-                <div style={styles.useCaseIconWrapper}>
-                  <AnimatedIcon Icon={ShoppingBag} size={40} color="#d4af37" variant="bounce" />
+            <ScrollReveal direction="up" delay={0.2}>
+              <GlassCard className="feature-card">
+                <div style={styles.featureCard}>
+                  <div style={styles.featureIconContainer}>
+                    <AnimatedIcon Icon={ShoppingBag} size={52} variant="bounce" />
+                  </div>
+                  <h3 style={styles.featureTitle}>E-Commerce</h3>
+                  <p style={styles.featureText}>
+                    Product recommendations, order tracking, and personalized shopping experiences.
+                  </p>
                 </div>
-                <h3 style={styles.useCaseTitle}>E-Commerce</h3>
-                <p style={styles.useCaseText}>
-                  Product recommendations, order tracking, and personalized shopping experiences.
-                </p>
-              </div>
+              </GlassCard>
             </ScrollReveal>
-            <ScrollReveal direction="scale" delay={0.3}>
-              <div style={styles.useCaseCard} className="use-case-card">
-                <div style={styles.useCaseIconWrapper}>
-                  <AnimatedIcon Icon={Heart} size={40} color="#d4af37" variant="glow" />
+            <ScrollReveal direction="up" delay={0.3}>
+              <GlassCard className="feature-card">
+                <div style={styles.featureCard}>
+                  <div style={styles.featureIconContainer}>
+                    <AnimatedIcon Icon={Heart} size={52} variant="glow" />
+                  </div>
+                  <h3 style={styles.featureTitle}>Finance</h3>
+                  <p style={styles.featureText}>
+                    Secure account inquiries, fraud detection, and financial advisory services.
+                  </p>
                 </div>
-                <h3 style={styles.useCaseTitle}>Finance</h3>
-                <p style={styles.useCaseText}>
-                  Secure account inquiries, fraud detection, and financial advisory services.
-                </p>
-              </div>
+              </GlassCard>
             </ScrollReveal>
-            <ScrollReveal direction="scale" delay={0.4}>
-              <div style={styles.useCaseCard} className="use-case-card">
-                <div style={styles.useCaseIconWrapper}>
-                  <AnimatedIcon Icon={Building2} size={40} color="#d4af37" variant="3d" />
+            <ScrollReveal direction="up" delay={0.4}>
+              <GlassCard className="feature-card">
+                <div style={styles.featureCard}>
+                  <div style={styles.featureIconContainer}>
+                    <AnimatedIcon Icon={Building2} size={52} variant="3d" />
+                  </div>
+                  <h3 style={styles.featureTitle}>Enterprise</h3>
+                  <p style={styles.featureText}>
+                    Internal helpdesk, HR automation, and employee onboarding at scale.
+                  </p>
                 </div>
-                <h3 style={styles.useCaseTitle}>Enterprise</h3>
-                <p style={styles.useCaseText}>
-                  Internal helpdesk, HR automation, and employee onboarding at scale.
-                </p>
-              </div>
+              </GlassCard>
             </ScrollReveal>
           </div>
         </section>
@@ -492,27 +508,37 @@ export default function Page() {
 
         {/* CTA Section */}
         <section style={styles.ctaSection}>
-          <div style={styles.ctaContent}>
-            <h2 style={styles.ctaSectionTitle}>Ready to transform your business?</h2>
-            <p style={styles.ctaSectionText}>
-              Join leading companies using Billionets A.I to revolutionize customer engagement.
-            </p>
-            <div style={styles.ctaButtons} className="cta-buttons">
-              <button 
-                onClick={() => window.location.href = '/demo'} 
-                style={styles.ctaPrimaryButton}
-                className="cta-primary"
-              >
-                Start Free Demo
-              </button>
-              <button 
-                onClick={() => window.location.href = '/contact'} 
-                style={styles.ctaSecondaryBtn}
-                className="cta-secondary"
-              >
-                Contact Sales
-              </button>
-            </div>
+          <FloatingBlobs />
+          <div style={{position: 'relative', zIndex: 2}}>
+            <AnimatedSection direction="scale" delay={0.2}>
+              <GlassCard>
+              <div style={styles.ctaContent}>
+                <div style={{marginBottom: '1.5rem', display: 'flex', justifyContent: 'center'}}>
+                  <AnimatedIcon Icon={Sparkles} size={64} variant="glow" />
+                </div>
+                <h2 style={styles.ctaSectionTitle}>Ready to transform your business?</h2>
+                <p style={styles.ctaSectionText}>
+                  Join leading companies using Billionets A.I to revolutionize customer engagement.
+                </p>
+                <div style={styles.ctaButtons} className="cta-buttons">
+                  <button 
+                    onClick={() => window.location.href = '/demo'} 
+                    style={styles.ctaPrimaryButton}
+                    className="cta-primary"
+                  >
+                    Start Free Demo
+                  </button>
+                  <button 
+                    onClick={() => window.location.href = '/contact'} 
+                    style={styles.ctaSecondaryBtn}
+                    className="cta-secondary"
+                  >
+                    Contact Sales
+                  </button>
+                </div>
+              </div>
+            </GlassCard>
+          </AnimatedSection>
           </div>
         </section>
 
@@ -638,18 +664,6 @@ export default function Page() {
             box-shadow: 0 0 40px rgba(212, 175, 55, 0.7), 0 0 80px rgba(212, 175, 55, 0.4);
           }
           
-          .provide-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(212, 175, 55, 0.5);
-            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
-          }
-          
-          .use-case-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.15);
-          }
-          
           .cta-primary:hover {
             transform: scale(1.05);
             box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
@@ -690,6 +704,13 @@ export default function Page() {
             }
             .floating-1, .floating-2, .floating-3, .floating-4 {
               display: none;
+            }
+            .cta-buttons {
+              flex-direction: column !important;
+              max-width: 320px !important;
+            }
+            .cta-buttons button {
+              width: 100%;
             }
           }
         `}</style>
@@ -937,7 +958,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   whatWeProvide: {
     padding: '3rem 1.25rem',
-    backgroundColor: '#000000',
+    backgroundColor: '#0a0a0a',
   },
   provideGrid: {
     display: 'grid',
@@ -1052,14 +1073,18 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   ctaSection: {
     padding: '3rem 1.25rem',
-    background: 'linear-gradient(135deg, #1a1a1a 0%, #000000 100%)',
-    borderTop: '1px solid rgba(212, 175, 55, 0.2)',
+    background: '#000000',
     textAlign: 'center',
+    position: 'relative',
+    overflow: 'hidden',
   },
   ctaContent: {
-    maxWidth: '100%',
+    maxWidth: '800px',
     margin: '0 auto',
-    padding: '0 0.5rem',
+    padding: '2rem 1.5rem',
+    textAlign: 'center',
+    position: 'relative',
+    zIndex: 2,
   },
   ctaSectionTitle: {
     fontSize: '1.75rem',
@@ -1076,12 +1101,13 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   ctaButtons: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     gap: '1rem',
     justifyContent: 'center',
-    alignItems: 'stretch',
-    maxWidth: '320px',
+    alignItems: 'center',
+    maxWidth: '600px',
     margin: '0 auto',
+    flexWrap: 'wrap',
   },
   ctaPrimaryButton: {
     padding: '1rem 2rem',
@@ -1094,7 +1120,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontWeight: '700',
     boxShadow: '0 0 20px rgba(212, 175, 55, 0.3)',
     transition: 'all 0.3s',
-    width: '100%',
+    minWidth: '180px',
+    whiteSpace: 'nowrap',
   },
   ctaSecondaryBtn: {
     padding: '1rem 2rem',
@@ -1106,7 +1133,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     color: '#ffffff',
     fontWeight: '600',
     transition: 'all 0.3s',
-    width: '100%',
+    minWidth: '180px',
+    whiteSpace: 'nowrap',
   },
   footer: {
     padding: '2rem 1.25rem',
