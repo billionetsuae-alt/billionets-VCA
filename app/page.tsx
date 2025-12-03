@@ -1,6 +1,17 @@
 'use client';
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+import AnimatedSection from './components/AnimatedSection';
+import GlassCard from './components/GlassCard';
+import FloatingBlobs from './components/FloatingBlobs';
+import AnimatedIcon from './components/AnimatedIcon';
+import ScrollReveal from './components/ScrollReveal';
+import MobileNav from './components/MobileNav';
+import { 
+  Zap, Globe, Brain, Shield, BarChart3, PhoneCall, 
+  Mic2, MessageSquare, Sparkles, Heart, Stethoscope, 
+  ShoppingBag, Building2, Waves, SpeechIcon
+} from 'lucide-react';
 
 // The webhook URL to get a join token for Ultravox
 const WEBHOOK_URL = 'https://n8n-642200223.kloudbeansite.com/webhook/ultravox_inbound';
@@ -152,195 +163,268 @@ export default function Page() {
       <div style={styles.landingContainer}>
         {/* Navigation */}
         <nav style={styles.nav}>
-          <div style={styles.navContent} className="responsive-nav-content">
+          <div style={styles.navContent}>
             <div style={styles.logo}>
-              <div style={styles.logoIcon}>🤖</div>
-              <span style={styles.logoText}>Billionets A.I</span>
+              <div style={styles.logoIcon}>
+                <AnimatedIcon Icon={Mic2} size={28} variant="glow" />
+              </div>
+              <span style={styles.logoText}>BILLIONETS A.I</span>
             </div>
-            <button onClick={() => window.location.href = '/demo'} style={styles.navButton}>Try Demo</button>
+            {/* Desktop Nav */}
+            <div style={styles.navLinks} className="desktop-nav">
+              <a href="#features" style={styles.navLink}>Features</a>
+              <a href="#use-cases" style={styles.navLink}>Use Cases</a>
+              <a href="/demo" style={styles.navLink}>Demo</a>
+              <a href="/contact" style={styles.navLink}>Contact</a>
+            </div>
+            {/* Mobile Nav */}
+            <div className="mobile-nav">
+              <MobileNav 
+                navLinks={[
+                  { href: '#features', label: 'Features' },
+                  { href: '#use-cases', label: 'Use Cases' },
+                  { href: '/demo', label: 'Demo' },
+                  { href: '/contact', label: 'Contact' },
+                ]}
+              />
+            </div>
           </div>
         </nav>
 
         {/* Hero Section */}
         <section style={styles.hero} className="responsive-hero">
-          <div style={styles.heroContent}>
-            <h1 style={styles.heroTitle} className="responsive-hero-title">
-              Talk to AI Like Never Before
-            </h1>
-            <p style={styles.heroSubtitle}>
-              Experience natural, real-time voice conversations with advanced AI agents. 
-              Powered by cutting-edge voice technology for seamless human-AI interaction.
-            </p>
-            <div style={styles.heroButtons}>
-              <button onClick={() => window.location.href = '/demo'} style={styles.ctaButton}>
-                Try Live Demo
-              </button>
-              <button onClick={() => window.location.href = '/contact'} style={styles.ctaSecondaryButton}>
-                Contact Sales
+          {/* Floating Blobs Background */}
+          <FloatingBlobs />
+          
+          {/* Floating Elements */}
+          <div style={styles.floatingElement1} className="floating-1">
+            <AnimatedIcon Icon={Mic2} size={56} variant="glow" />
+          </div>
+          <div style={styles.floatingElement2} className="floating-2">
+            <AnimatedIcon Icon={Sparkles} size={56} variant="pulse" />
+          </div>
+          <div style={styles.floatingElement3} className="floating-3">
+            <AnimatedIcon Icon={MessageSquare} size={48} variant="bounce" />
+          </div>
+          <div style={styles.floatingElement4} className="floating-4">
+            <AnimatedIcon Icon={Zap} size={48} variant="spin" />
+          </div>
+
+          <AnimatedSection direction="scale" delay={0.2} duration={1}>
+            <div style={styles.heroContent}>
+            <div style={styles.heroTextContainer}>
+              <h1 style={styles.heroTitle} className="responsive-hero-title">
+                Experience the future of
+                <br />
+                <span style={styles.heroTitleGold}>AI voice interaction</span>
+              </h1>
+              <p style={styles.heroSubtitle}>
+                Transform your business with intelligent voice agents that understand,
+                <br />
+                respond, and engage in natural conversations.
+              </p>
+            </div>
+
+            {/* Glowing CTA Button */}
+            <div style={styles.ctaContainer}>
+              <button 
+                onClick={() => window.location.href = '/demo'} 
+                style={styles.glowingButton}
+                className="glowing-button"
+              >
+                <span style={styles.buttonText}>Try Live Demo</span>
+                <span style={styles.buttonIcon}>→</span>
               </button>
             </div>
-            <p style={styles.heroNote}>No credit card required • Instant access</p>
+
+            <p style={styles.heroNote}>No credit card required • Start in seconds</p>
           </div>
+          </AnimatedSection>
         </section>
 
         {/* Features Section */}
-        <section style={styles.features}>
-          <h2 style={styles.sectionTitle}>Why Choose Billionets A.I?</h2>
-          <div style={styles.featureGrid}>
-            <div style={styles.featureCard}>
-              <div style={styles.featureIcon}>⚡</div>
-              <h3 style={styles.featureTitle}>Lightning Fast</h3>
-              <p style={styles.featureText}>
-                Ultra-low latency conversations that feel natural and instantaneous.
-              </p>
-            </div>
-            <div style={styles.featureCard}>
-              <div style={styles.featureIcon}>🎯</div>
-              <h3 style={styles.featureTitle}>Highly Accurate</h3>
-              <p style={styles.featureText}>
-                Advanced speech recognition with real-time transcription accuracy.
-              </p>
-            </div>
-            <div style={styles.featureCard}>
-              <div style={styles.featureIcon}>🔒</div>
-              <h3 style={styles.featureTitle}>Secure & Private</h3>
-              <p style={styles.featureText}>
-                End-to-end encrypted conversations. Your data stays private.
-              </p>
-            </div>
+        <section style={styles.features} id="features">
+          <AnimatedSection direction="up" delay={0.3}>
+            <h2 style={styles.sectionTitle}>Featured Capabilities</h2>
+          </AnimatedSection>
+          <div style={styles.featureGrid} className="feature-grid">
+            <ScrollReveal direction="up" delay={0.1}>
+              <GlassCard className="feature-card">
+                <div style={styles.featureCard}>
+                  <div style={styles.featureIconContainer}>
+                    <AnimatedIcon Icon={Zap} size={52} variant="3d" />
+                  </div>
+                  <h3 style={styles.featureTitle}>Ultra-Low Latency</h3>
+                  <p style={styles.featureText}>
+                    Real-time voice processing with minimal delay for natural conversations.
+                  </p>
+                </div>
+              </GlassCard>
+            </ScrollReveal>
+            <ScrollReveal direction="up" delay={0.2}>
+              <GlassCard className="feature-card">
+                <div style={styles.featureCard}>
+                  <div style={styles.featureIconContainer}>
+                    <AnimatedIcon Icon={Globe} size={52} variant="spin" />
+                  </div>
+                  <h3 style={styles.featureTitle}>26+ Languages</h3>
+                  <p style={styles.featureText}>
+                    Multi-lingual support to engage a global audience seamlessly.
+                  </p>
+                </div>
+              </GlassCard>
+            </ScrollReveal>
+            <ScrollReveal direction="up" delay={0.3}>
+              <GlassCard className="feature-card">
+                <div style={styles.featureCard}>
+                  <div style={styles.featureIconContainer}>
+                    <AnimatedIcon Icon={Brain} size={52} variant="pulse" />
+                  </div>
+                  <h3 style={styles.featureTitle}>Knowledge RAG</h3>
+                  <p style={styles.featureText}>
+                    AI agents that learn from your business data for accurate responses.
+                  </p>
+                </div>
+              </GlassCard>
+            </ScrollReveal>
+            <ScrollReveal direction="up" delay={0.4}>
+              <GlassCard className="feature-card">
+                <div style={styles.featureCard}>
+                  <div style={styles.featureIconContainer}>
+                    <AnimatedIcon Icon={Shield} size={52} variant="glow" />
+                  </div>
+                  <h3 style={styles.featureTitle}>Enterprise Security</h3>
+                  <p style={styles.featureText}>
+                    End-to-end encryption with enterprise-grade data protection.
+                  </p>
+                </div>
+              </GlassCard>
+            </ScrollReveal>
           </div>
         </section>
 
         {/* What We Provide Section */}
         <section style={styles.whatWeProvide} className="responsive-section">
-          <h2 style={styles.sectionTitle}>What We Provide</h2>
-          <div style={styles.provideGrid}>
-            <div style={styles.provideCard}>
-              <div style={styles.provideIcon}>🌐</div>
-              <h3 style={styles.provideTitle}>Multi-lingual Support</h3>
-              <p style={styles.provideText}>Engage a global audience with fluent support for 26 languages, breaking down all communication barriers.</p>
-            </div>
-            <div style={styles.provideCard}>
-              <div style={styles.provideIcon}>🧠</div>
-              <h3 style={styles.provideTitle}>Knowledge RAG</h3>
-              <p style={styles.provideText}>Our agent learns everything about your business, providing accurate and context-aware responses instantly.</p>
-            </div>
-            <div style={styles.provideCard}>
-              <div style={styles.provideIcon}>📊</div>
-              <h3 style={styles.provideTitle}>Conversation Analytics</h3>
-              <p style={styles.provideText}>Gain deep insights from call data with advanced analytics to understand customer sentiment and trends.</p>
-            </div>
-            <div style={styles.provideCard}>
-              <div style={styles.provideIcon}>📲</div>
-              <h3 style={styles.provideTitle}>Call Transferring</h3>
-              <p style={styles.provideText}>Seamlessly transfer calls from the AI agent to a human operator for complex issue resolution.</p>
-            </div>
-            <div style={styles.provideCard}>
-              <div style={styles.provideIcon}>🗣️</div>
-              <h3 style={styles.provideTitle}>Voice Cloning</h3>
-              <p style={styles.provideText}>Create a unique brand identity with a custom-cloned voice that perfectly matches your brand's persona.</p>
-            </div>
-            <div style={styles.provideCard}>
-              <div style={styles.provideIcon}>🗂️</div>
-              <h3 style={styles.provideTitle}>Advanced CRM Integration</h3>
-              <p style={styles.provideText}>Automatically collect and sync user data with your CRM, streamlining your sales and support workflows.</p>
-            </div>
+          <AnimatedSection direction="up" delay={0.2}>
+            <h2 style={styles.sectionTitle}>Advanced Features</h2>
+          </AnimatedSection>
+          <div style={styles.provideGrid} className="provide-grid">
+            <ScrollReveal direction="left" delay={0.1}>
+              <div style={styles.provideCard} className="provide-card">
+                <div style={styles.provideIconGold}>
+                  <AnimatedIcon Icon={BarChart3} size={56} variant="bounce" />
+                </div>
+                <h3 style={styles.provideTitle}>Conversation Analytics</h3>
+                <p style={styles.provideText}>Deep insights from call data to understand customer sentiment and behavior patterns.</p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal direction="left" delay={0.2}>
+              <div style={styles.provideCard} className="provide-card">
+                <div style={styles.provideIconGold}>
+                  <AnimatedIcon Icon={PhoneCall} size={56} variant="pulse" />
+                </div>
+                <h3 style={styles.provideTitle}>Smart Call Transfer</h3>
+                <p style={styles.provideText}>Seamlessly transition from AI to human agents when needed.</p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal direction="left" delay={0.3}>
+              <div style={styles.provideCard} className="provide-card">
+                <div style={styles.provideIconGold}>
+                  <AnimatedIcon Icon={Waves} size={56} variant="glow" />
+                </div>
+                <h3 style={styles.provideTitle}>Voice Cloning</h3>
+                <p style={styles.provideText}>Custom-branded voice that matches your company's unique identity.</p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal direction="left" delay={0.4}>
+              <div style={styles.provideCard} className="provide-card">
+                <div style={styles.provideIconGold}>
+                  <AnimatedIcon Icon={Building2} size={56} variant="3d" />
+                </div>
+                <h3 style={styles.provideTitle}>CRM Integration</h3>
+                <p style={styles.provideText}>Automatic data sync with your existing CRM and business tools.</p>
+              </div>
+            </ScrollReveal>
           </div>
         </section>
 
         {/* Use Cases Section */}
-        <section style={styles.useCases} className="responsive-section">
-          <h2 style={styles.sectionTitle}>Perfect For Every Industry</h2>
-          <div style={styles.useCaseGrid}>
-            <div style={styles.useCaseCard}>
-              <h3 style={styles.useCaseTitle}>🏥 Healthcare</h3>
-              <p style={styles.useCaseText}>
-                Virtual health assistants, patient intake, appointment scheduling, and 24/7 medical support.
-              </p>
-            </div>
-            <div style={styles.useCaseCard}>
-              <h3 style={styles.useCaseTitle}>🛍️ E-Commerce</h3>
-              <p style={styles.useCaseText}>
-                Product recommendations, order tracking, customer service, and personalized shopping assistance.
-              </p>
-            </div>
-            <div style={styles.useCaseCard}>
-              <h3 style={styles.useCaseTitle}>🏦 Finance</h3>
-              <p style={styles.useCaseText}>
-                Account inquiries, fraud detection, transaction support, and financial planning guidance.
-              </p>
-            </div>
-            <div style={styles.useCaseCard}>
-              <h3 style={styles.useCaseTitle}>📚 Education</h3>
-              <p style={styles.useCaseText}>
-                Tutoring, language learning, study assistance, and interactive educational experiences.
-              </p>
-            </div>
-            <div style={styles.useCaseCard}>
-              <h3 style={styles.useCaseTitle}>🏢 Enterprise</h3>
-              <p style={styles.useCaseText}>
-                Internal helpdesk, HR support, employee onboarding, and automated workflows.
-              </p>
-            </div>
-            <div style={styles.useCaseCard}>
-              <h3 style={styles.useCaseTitle}>✈️ Travel</h3>
-              <p style={styles.useCaseText}>
-                Booking assistance, itinerary planning, real-time updates, and concierge services.
-              </p>
-            </div>
+        <section style={styles.useCases} className="responsive-section" id="use-cases">
+          <AnimatedSection direction="up" delay={0.2}>
+            <h2 style={styles.sectionTitle}>Industries We Transform</h2>
+          </AnimatedSection>
+          <div style={styles.useCaseGrid} className="use-case-grid">
+            <ScrollReveal direction="scale" delay={0.1}>
+              <div style={styles.useCaseCard} className="use-case-card">
+                <div style={styles.useCaseIconWrapper}>
+                  <AnimatedIcon Icon={Stethoscope} size={40} color="#d4af37" variant="pulse" />
+                </div>
+                <h3 style={styles.useCaseTitle}>Healthcare</h3>
+                <p style={styles.useCaseText}>
+                  Patient intake, appointment scheduling, and 24/7 medical support with HIPAA compliance.
+                </p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal direction="scale" delay={0.2}>
+              <div style={styles.useCaseCard} className="use-case-card">
+                <div style={styles.useCaseIconWrapper}>
+                  <AnimatedIcon Icon={ShoppingBag} size={40} color="#d4af37" variant="bounce" />
+                </div>
+                <h3 style={styles.useCaseTitle}>E-Commerce</h3>
+                <p style={styles.useCaseText}>
+                  Product recommendations, order tracking, and personalized shopping experiences.
+                </p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal direction="scale" delay={0.3}>
+              <div style={styles.useCaseCard} className="use-case-card">
+                <div style={styles.useCaseIconWrapper}>
+                  <AnimatedIcon Icon={Heart} size={40} color="#d4af37" variant="glow" />
+                </div>
+                <h3 style={styles.useCaseTitle}>Finance</h3>
+                <p style={styles.useCaseText}>
+                  Secure account inquiries, fraud detection, and financial advisory services.
+                </p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal direction="scale" delay={0.4}>
+              <div style={styles.useCaseCard} className="use-case-card">
+                <div style={styles.useCaseIconWrapper}>
+                  <AnimatedIcon Icon={Building2} size={40} color="#d4af37" variant="3d" />
+                </div>
+                <h3 style={styles.useCaseTitle}>Enterprise</h3>
+                <p style={styles.useCaseText}>
+                  Internal helpdesk, HR automation, and employee onboarding at scale.
+                </p>
+              </div>
+            </ScrollReveal>
           </div>
         </section>
 
-        {/* Testimonials Section */}
-        <section style={styles.testimonials}>
-          <h2 style={styles.sectionTitle}>What Our Customers Say</h2>
-          <div style={styles.testimonialGrid}>
-            <div style={styles.testimonialCard}>
-              <div style={styles.stars}>⭐⭐⭐⭐⭐</div>
-              <p style={styles.testimonialText}>
-                "Billionets A.I transformed our customer service. The natural conversations and instant responses have increased our satisfaction rates by 40%."
-              </p>
-              <div style={styles.testimonialAuthor}>
-                <strong>Sarah Chen</strong>
-                <span style={styles.testimonialRole}>CEO, TechRetail</span>
-              </div>
-            </div>
-            <div style={styles.testimonialCard}>
-              <div style={styles.stars}>⭐⭐⭐⭐⭐</div>
-              <p style={styles.testimonialText}>
-                "The accuracy and speed are unmatched. Our patients love being able to schedule appointments by just talking naturally."
-              </p>
-              <div style={styles.testimonialAuthor}>
-                <strong>Dr. Michael Rodriguez</strong>
-                <span style={styles.testimonialRole}>Medical Director, HealthPlus</span>
-              </div>
-            </div>
-            <div style={styles.testimonialCard}>
-              <div style={styles.stars}>⭐⭐⭐⭐⭐</div>
-              <p style={styles.testimonialText}>
-                "Implementation was seamless and the results were immediate. This is the future of customer interaction."
-              </p>
-              <div style={styles.testimonialAuthor}>
-                <strong>James Wilson</strong>
-                <span style={styles.testimonialRole}>CTO, FinanceHub</span>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* CTA Section */}
         <section style={styles.ctaSection}>
-          <h2 style={styles.ctaSectionTitle}>Ready to Experience the Future?</h2>
-          <p style={styles.ctaSectionText}>
-            Start your free demo today and see how Billionets A.I can transform your business.
-          </p>
-          <div style={styles.ctaButtons}>
-            <button onClick={() => window.location.href = '/demo'} style={styles.ctaButton}>
-              Try Live Demo Now
-            </button>
-            <button onClick={() => window.location.href = '/contact'} style={styles.ctaSecondaryButton}>
-              Get in Touch
-            </button>
+          <div style={styles.ctaContent}>
+            <h2 style={styles.ctaSectionTitle}>Ready to transform your business?</h2>
+            <p style={styles.ctaSectionText}>
+              Join leading companies using Billionets A.I to revolutionize customer engagement.
+            </p>
+            <div style={styles.ctaButtons} className="cta-buttons">
+              <button 
+                onClick={() => window.location.href = '/demo'} 
+                style={styles.ctaPrimaryButton}
+                className="cta-primary"
+              >
+                Start Free Demo
+              </button>
+              <button 
+                onClick={() => window.location.href = '/contact'} 
+                style={styles.ctaSecondaryBtn}
+                className="cta-secondary"
+              >
+                Contact Sales
+              </button>
+            </div>
           </div>
         </section>
 
@@ -455,9 +539,46 @@ export default function Page() {
           body {
             overflow-x: hidden;
           }
+          
+          @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+          }
+          
+          .glowing-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.7), 0 0 80px rgba(212, 175, 55, 0.4);
+          }
+          
+          .provide-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
+          }
+          
+          .use-case-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.15);
+          }
+          
+          .cta-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+          }
+          
+          .cta-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.05);
+          }
+          
+          a[href]:hover {
+            color: #d4af37 !important;
+          }
+          
           @media (max-width: 768px) {
             .responsive-hero {
-              padding: 4rem 1rem !important;
+              padding: 4rem 1rem 6rem !important;
             }
             .responsive-section {
               padding: 3rem 1rem !important;
@@ -478,6 +599,9 @@ export default function Page() {
               flex-direction: column;
               gap: 1rem;
               align-items: stretch;
+            }
+            .floating-1, .floating-2, .floating-3, .floating-4 {
+              display: none;
             }
           }
         `}</style>
@@ -505,19 +629,19 @@ const styles: { [key: string]: React.CSSProperties } = {
   landingContainer: {
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     minHeight: '100vh',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#000000',
   },
   nav: {
-    borderBottom: '1px solid #e5e7eb',
-    backgroundColor: 'white',
+    borderBottom: '1px solid rgba(212, 175, 55, 0.2)',
+    backgroundColor: '#000000',
     position: 'sticky',
     top: 0,
     zIndex: 50,
   },
   navContent: {
-    maxWidth: '1200px',
+    maxWidth: '1400px',
     margin: '0 auto',
-    padding: '1rem 2rem',
+    padding: '1rem 1.25rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -525,53 +649,101 @@ const styles: { [key: string]: React.CSSProperties } = {
   logo: {
     display: 'flex',
     alignItems: 'center',
-    gap: '0.75rem',
-    fontSize: '1.5rem',
+    gap: '0.5rem',
+    fontSize: '1.1rem',
     fontWeight: 'bold',
-    color: '#1f2937',
+    color: '#ffffff',
   },
   logoIcon: {
-    fontSize: '2rem',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   logoText: {
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    background: 'linear-gradient(135deg, #d4af37 0%, #f4e5a1 100%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
+    letterSpacing: '0.05em',
+  },
+  navLinks: {
+    display: 'flex',
+    gap: '2.5rem',
+    alignItems: 'center',
+  },
+  navLink: {
+    color: '#ffffff',
+    textDecoration: 'none',
+    fontSize: '0.95rem',
+    fontWeight: '500',
+    transition: 'color 0.3s',
+    letterSpacing: '0.02em',
+  },
+  hero: {
+    background: '#000000',
+    color: 'white',
+    padding: '4rem 1.25rem 5rem',
+    textAlign: 'center',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  floatingElement1: { position: 'absolute', top: '10%', left: '10%', opacity: 0.2, animation: 'float 6s ease-in-out infinite', zIndex: 1 } as React.CSSProperties,
+  floatingElement2: { position: 'absolute', top: '20%', right: '15%', opacity: 0.2, animation: 'float 7s ease-in-out infinite', zIndex: 1 } as React.CSSProperties,
+  floatingElement3: { position: 'absolute', bottom: '25%', left: '15%', opacity: 0.15, animation: 'float 8s ease-in-out infinite', zIndex: 1 } as React.CSSProperties,
+  floatingElement4: { position: 'absolute', bottom: '15%', right: '10%', opacity: 0.15, animation: 'float 5s ease-in-out infinite', zIndex: 1 } as React.CSSProperties,
+  heroContent: {
+    maxWidth: '100%',
+    margin: '0 auto',
+    position: 'relative',
+    zIndex: 2,
+    padding: '0 0.5rem',
+  },
+  heroTextContainer: {
+    marginBottom: '2rem',
+  },
+  heroTitle: {
+    fontSize: '2rem',
+    fontWeight: '700',
+    marginBottom: '1rem',
+    lineHeight: '1.3',
+    color: '#ffffff',
+  },
+  heroTitleGold: {
+    background: 'linear-gradient(135deg, #d4af37 0%, #f4e5a1 50%, #d4af37 100%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
   },
-  navButton: {
-    padding: '0.625rem 1.5rem',
-    fontSize: '1rem',
-    border: '2px solid #667eea',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    backgroundColor: 'white',
-    color: '#667eea',
-    fontWeight: '600',
-    transition: 'all 0.3s',
-  },
-  hero: {
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    color: 'white',
-    padding: '6rem 2rem',
-    textAlign: 'center',
-  },
-  heroContent: {
-    maxWidth: '800px',
-    margin: '0 auto',
-  },
-  heroTitle: {
-    fontSize: '3.5rem',
-    fontWeight: 'bold',
-    marginBottom: '1.5rem',
-    lineHeight: '1.2',
-  },
   heroSubtitle: {
-    fontSize: '1.25rem',
-    marginBottom: '2.5rem',
-    opacity: 0.95,
+    fontSize: '0.95rem',
+    marginBottom: '0',
+    color: 'rgba(255, 255, 255, 0.7)',
     lineHeight: '1.6',
+    padding: '0 0.5rem',
   },
+  ctaContainer: {
+    margin: '2rem 0 1.5rem',
+  },
+  glowingButton: {
+    padding: '1rem 2rem',
+    fontSize: '1rem',
+    border: '2px solid #d4af37',
+    borderRadius: '50px',
+    cursor: 'pointer',
+    background: 'linear-gradient(135deg, #d4af37 0%, #c9a332 100%)',
+    color: '#000000',
+    fontWeight: '700',
+    boxShadow: '0 0 20px rgba(212, 175, 55, 0.4), 0 0 40px rgba(212, 175, 55, 0.2)',
+    transition: 'all 0.3s',
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    width: '100%',
+    maxWidth: '280px',
+    justifyContent: 'center',
+  },
+  buttonText: { display: 'inline-block' },
+  buttonIcon: { fontSize: '1.3rem', display: 'inline-block' },
   heroButtons: {
     display: 'flex',
     gap: '1rem',
@@ -604,110 +776,139 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   heroNote: {
     marginTop: '1rem',
-    fontSize: '0.875rem',
-    opacity: 0.9,
+    fontSize: '0.75rem',
+    color: 'rgba(255, 255, 255, 0.6)',
+    letterSpacing: '0.03em',
   },
   features: {
-    padding: '5rem 2rem',
-    backgroundColor: '#f9fafb',
+    padding: '3rem 1.25rem',
+    backgroundColor: '#0a0a0a',
   },
   sectionTitle: {
-    fontSize: '2.5rem',
-    fontWeight: 'bold',
+    fontSize: '1.75rem',
+    fontWeight: '700',
     textAlign: 'center',
-    marginBottom: '3rem',
-    color: '#1f2937',
+    marginBottom: '2rem',
+    color: '#ffffff',
+    letterSpacing: '-0.01em',
+    padding: '0 0.5rem',
   },
   featureGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-    gap: '2rem',
-    maxWidth: '1200px',
+    gridTemplateColumns: '1fr',
+    gap: '1.25rem',
+    maxWidth: '1300px',
     margin: '0 auto',
   },
   featureCard: {
-    backgroundColor: 'white',
-    padding: '2rem',
+    background: 'transparent',
+    padding: '1.75rem 1.25rem',
     borderRadius: '16px',
-    boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
+    border: 'none',
     textAlign: 'center',
-    transition: 'transform 0.3s, box-shadow 0.3s',
+  },
+  featureIconContainer: {
+    width: '60px',
+    height: '60px',
+    margin: '0 auto 1rem',
+    background: 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)',
+    borderRadius: '50%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   featureIcon: {
-    fontSize: '3rem',
-    marginBottom: '1rem',
+    fontSize: '2rem',
   },
   featureTitle: {
-    fontSize: '1.5rem',
+    fontSize: '1.15rem',
     fontWeight: '600',
-    marginBottom: '1rem',
-    color: '#1f2937',
+    marginBottom: '0.75rem',
+    color: '#ffffff',
   },
   featureText: {
-    color: '#6b7280',
+    color: 'rgba(255, 255, 255, 0.7)',
     lineHeight: '1.6',
+    fontSize: '0.9rem',
   },
   whatWeProvide: {
-    padding: '5rem 2rem',
-    backgroundColor: 'white',
+    padding: '3rem 1.25rem',
+    backgroundColor: '#000000',
   },
   provideGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-    gap: '2rem',
-    maxWidth: '1200px',
+    gridTemplateColumns: '1fr',
+    gap: '1.25rem',
+    maxWidth: '1300px',
     margin: '0 auto',
   },
   provideCard: {
-    backgroundColor: '#f9fafb',
-    padding: '2.5rem 2rem',
+    background: 'linear-gradient(145deg, #0f0f0f 0%, #1a1a1a 100%)',
+    padding: '1.75rem 1.5rem',
     borderRadius: '16px',
-    border: '1px solid #e5e7eb',
+    border: '1px solid rgba(212, 175, 55, 0.2)',
     textAlign: 'center',
-    transition: 'transform 0.3s, box-shadow 0.3s',
+    transition: 'all 0.4s',
   },
-  provideIcon: {
-    fontSize: '3rem',
-    marginBottom: '1.5rem',
-    lineHeight: '1',
+  provideIconGold: {
+    marginBottom: '1rem',
+    filter: 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.4))',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   provideTitle: {
-    fontSize: '1.5rem',
+    fontSize: '1.15rem',
     fontWeight: '600',
-    marginBottom: '1rem',
-    color: '#1f2937',
+    marginBottom: '0.75rem',
+    color: '#d4af37',
   },
   provideText: {
-    color: '#6b7280',
+    color: 'rgba(255, 255, 255, 0.7)',
     lineHeight: '1.6',
-    fontSize: '0.95rem',
+    fontSize: '0.9rem',
   },
   useCases: {
-    padding: '5rem 2rem',
-    backgroundColor: '#f9fafb',
+    padding: '3rem 1.25rem',
+    backgroundColor: '#0a0a0a',
   },
   useCaseGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-    gap: '1.5rem',
-    maxWidth: '1200px',
+    gridTemplateColumns: '1fr',
+    gap: '1.25rem',
+    maxWidth: '1300px',
     margin: '0 auto',
   },
   useCaseCard: {
-    padding: '2rem',
-    borderRadius: '12px',
-    border: '1px solid #e5e7eb',
-    transition: 'all 0.3s',
+    background: 'linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%)',
+    padding: '1.75rem 1.5rem',
+    borderRadius: '16px',
+    border: '1px solid rgba(212, 175, 55, 0.1)',
+    transition: 'all 0.4s',
+  },
+  useCaseIconWrapper: {
+    width: '50px',
+    height: '50px',
+    background: 'rgba(212, 175, 55, 0.1)',
+    borderRadius: '10px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: '1rem',
+  },
+  useCaseEmoji: {
+    fontSize: '1.5rem',
   },
   useCaseTitle: {
-    fontSize: '1.25rem',
+    fontSize: '1.15rem',
     fontWeight: '600',
     marginBottom: '0.75rem',
-    color: '#1f2937',
+    color: '#ffffff',
   },
   useCaseText: {
-    color: '#6b7280',
+    color: 'rgba(255, 255, 255, 0.7)',
     lineHeight: '1.6',
+    fontSize: '0.9rem',
   },
   testimonials: {
     padding: '5rem 2rem',
@@ -746,51 +947,88 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: '0.875rem',
   },
   ctaSection: {
-    padding: '5rem 2rem',
-    backgroundColor: '#667eea',
-    color: 'white',
+    padding: '3rem 1.25rem',
+    background: 'linear-gradient(135deg, #1a1a1a 0%, #000000 100%)',
+    borderTop: '1px solid rgba(212, 175, 55, 0.2)',
     textAlign: 'center',
   },
+  ctaContent: {
+    maxWidth: '100%',
+    margin: '0 auto',
+    padding: '0 0.5rem',
+  },
   ctaSectionTitle: {
-    fontSize: '2.5rem',
-    fontWeight: 'bold',
+    fontSize: '1.75rem',
+    fontWeight: '700',
     marginBottom: '1rem',
+    color: '#ffffff',
+    lineHeight: '1.3',
   },
   ctaSectionText: {
-    fontSize: '1.25rem',
+    fontSize: '0.95rem',
     marginBottom: '2rem',
-    opacity: 0.95,
+    color: 'rgba(255, 255, 255, 0.7)',
+    lineHeight: '1.6',
   },
   ctaButtons: {
     display: 'flex',
+    flexDirection: 'column',
     gap: '1rem',
     justifyContent: 'center',
-    alignItems: 'center',
-    flexWrap: 'wrap',
+    alignItems: 'stretch',
+    maxWidth: '320px',
+    margin: '0 auto',
+  },
+  ctaPrimaryButton: {
+    padding: '1rem 2rem',
+    fontSize: '1rem',
+    border: '2px solid #d4af37',
+    borderRadius: '50px',
+    cursor: 'pointer',
+    background: 'linear-gradient(135deg, #d4af37 0%, #c9a332 100%)',
+    color: '#000000',
+    fontWeight: '700',
+    boxShadow: '0 0 20px rgba(212, 175, 55, 0.3)',
+    transition: 'all 0.3s',
+    width: '100%',
+  },
+  ctaSecondaryBtn: {
+    padding: '1rem 2rem',
+    fontSize: '1rem',
+    border: '2px solid rgba(255, 255, 255, 0.3)',
+    borderRadius: '50px',
+    cursor: 'pointer',
+    background: 'transparent',
+    color: '#ffffff',
+    fontWeight: '600',
+    transition: 'all 0.3s',
+    width: '100%',
   },
   footer: {
-    padding: '2rem',
+    padding: '2rem 1.25rem',
     textAlign: 'center',
-    borderTop: '1px solid #e5e7eb',
-    color: '#6b7280',
+    borderTop: '1px solid rgba(212, 175, 55, 0.15)',
+    backgroundColor: '#000000',
+    color: 'rgba(255, 255, 255, 0.5)',
   },
   footerContent: {
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: '2rem',
-    flexWrap: 'wrap',
+    gap: '1rem',
   },
   footerContactButton: {
-    padding: '0.5rem 1.25rem',
-    fontSize: '0.95rem',
-    border: '1px solid #667eea',
-    borderRadius: '6px',
+    padding: '0.75rem 1.5rem',
+    fontSize: '0.9rem',
+    border: '1px solid rgba(212, 175, 55, 0.5)',
+    borderRadius: '25px',
     cursor: 'pointer',
     backgroundColor: 'transparent',
-    color: '#667eea',
+    color: '#d4af37',
     fontWeight: '600',
     transition: 'all 0.3s',
+    minHeight: '44px',
   },
 
   // Demo Interface Styles

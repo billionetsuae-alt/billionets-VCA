@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ffffff;
+  --gold: #d4af37;
+  --gold-light: #f4e5a1;
 }
 
 @theme inline {
@@ -12,15 +14,342 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(212, 175, 55, 0.3);
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f4e5a1;
+}
+
+/* Glassmorphism styles */
+.glass-card {
+  background: rgba(26, 26, 26, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37),
+              inset 0 0 20px rgba(212, 175, 55, 0.05);
+}
+
+.glass-card:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 15px 60px 0 rgba(212, 175, 55, 0.3),
+              inset 0 0 40px rgba(212, 175, 55, 0.15);
+}
+
+.glass-card.feature-card {
+  border-radius: 20px;
+  height: 100%;
+}
+
+/* Floating blob animation */
+@keyframes float-blob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  75% {
+    transform: translate(40px, 10px) scale(1.05);
+  }
+}
+
+/* Animated icons enhancement */
+.provide-card:hover .animated-icon,
+.use-case-card:hover .animated-icon {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
+}
+
+/* Smooth icon transitions */
+svg {
+  transition: all 0.3s ease;
+}
+
+/* Icon glow on hover for feature cards */
+.feature-card:hover svg {
+  filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.6));
+}
+
+/* ========================================
+   MOBILE-FIRST RESPONSIVE DESIGN
+   ======================================== */
+
+/* Mobile Navigation */
+.mobile-nav {
+  display: block;
+}
+
+.desktop-nav {
+  display: none;
+}
+
+/* Mobile: Hide floating elements */
+.floating-1,
+.floating-2,
+.floating-3,
+.floating-4 {
+  display: none;
+}
+
+/* Mobile: Simplify glassmorphism for performance */
+@media (max-width: 768px) {
+  .glass-card {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  /* Disable 3D tilt on mobile */
+  .glass-card {
+    transform: none !important;
+  }
+}
+
+/* ========================================
+   TABLET: 768px and up
+   ======================================== */
+@media (min-width: 768px) {
+  /* Show floating elements on tablet+ */
+  .floating-1,
+  .floating-2,
+  .floating-3,
+  .floating-4 {
+    display: block;
+  }
+  
+  /* Grid layouts: 2 columns */
+  .feature-grid,
+  .provide-grid,
+  .use-case-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+  
+  /* Increase hero text */
+  .responsive-hero-title {
+    font-size: 2.75rem !important;
+  }
+  
+  /* Section padding */
+  section {
+    padding: 4rem 2rem !important;
+  }
+  
+  /* CTA buttons horizontal */
+  .cta-buttons {
+    flex-direction: row !important;
+    gap: 1.5rem !important;
+  }
+  
+  button {
+    width: auto !important;
+  }
+}
+
+/* ========================================
+   DESKTOP: 1024px and up
+   ======================================== */
+@media (min-width: 1024px) {
+  /* Show desktop nav, hide mobile */
+  .desktop-nav {
+    display: flex;
+  }
+  
+  .mobile-nav {
+    display: none;
+  }
+  
+  /* Navigation spacing */
+  nav .navContent {
+    padding: 1.5rem 3rem !important;
+  }
+  
+  /* Logo size */
+  .logo {
+    font-size: 1.5rem !important;
+    gap: 0.75rem !important;
+  }
+  
+  /* Hero section */
+  .hero {
+    padding: 8rem 2rem 10rem !important;
+  }
+  
+  .heroContent {
+    max-width: 1000px !important;
+  }
+  
+  .responsive-hero-title {
+    font-size: 4rem !important;
+  }
+  
+  .hero p {
+    font-size: 1.2rem !important;
+  }
+  
+  /* Section titles */
+  h2 {
+    font-size: 2.8rem !important;
+    margin-bottom: 4rem !important;
+  }
+  
+  /* Grid layouts: 4 columns on desktop */
+  .feature-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 2rem !important;
+  }
+  
+  .provide-grid,
+  .use-case-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 2rem !important;
+  }
+  
+  /* Card styling */
+  .featureCard,
+  .provideCard,
+  .useCaseCard {
+    padding: 2.5rem 2rem !important;
+  }
+  
+  /* Icon sizes */
+  .featureIconContainer {
+    width: 80px !important;
+    height: 80px !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Typography */
+  .featureTitle,
+  .provideTitle,
+  .useCaseTitle {
+    font-size: 1.4rem !important;
+  }
+  
+  .featureText,
+  .provideText,
+  .useCaseText {
+    font-size: 0.95rem !important;
+  }
+  
+  /* CTA section */
+  .ctaContent {
+    max-width: 900px !important;
+  }
+  
+  .ctaSectionTitle {
+    font-size: 2.8rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .ctaSectionText {
+    font-size: 1.2rem !important;
+    margin-bottom: 3rem !important;
+  }
+  
+  .ctaButtons {
+    max-width: 100% !important;
+  }
+  
+  .glowingButton {
+    max-width: none !important;
+    padding: 1.2rem 3rem !important;
+    font-size: 1.1rem !important;
+  }
+  
+  .ctaPrimaryButton,
+  .ctaSecondaryBtn {
+    padding: 1.2rem 3rem !important;
+    font-size: 1.1rem !important;
+  }
+  
+  /* Footer */
+  .footerContent {
+    flex-direction: row !important;
+    gap: 2rem !important;
+  }
+  
+  footer {
+    padding: 3rem 2rem !important;
+  }
+}
+
+/* ========================================
+   LARGE DESKTOP: 1280px and up
+   ======================================== */
+@media (min-width: 1280px) {
+  /* Wider grids for use cases */
+  .use-case-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+  
+  /* Section padding */
+  section {
+    padding: 6rem 2rem !important;
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+/* Touch-friendly buttons */
+button,
+a {
+  -webkit-tap-highlight-color: rgba(212, 175, 55, 0.2);
+  touch-action: manipulation;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better text rendering on mobile */
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent zoom on input focus (iOS) */
+@media (max-width: 768px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
 }
