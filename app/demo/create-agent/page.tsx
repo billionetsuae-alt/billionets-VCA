@@ -6,10 +6,12 @@ import { useRouter } from 'next/navigation';
 import AnimatedIcon from '../../components/AnimatedIcon';
 import MobileNav from '../../components/MobileNav';
 import FloatingBlobs from '../../components/FloatingBlobs';
-import { Mic2, Sparkles, Globe } from 'lucide-react';
+import { Mic2, Sparkles, Globe, User, Languages, ChevronDown } from 'lucide-react';
 
 const CreateAgentPage = () => {
   const [customAgentUrl, setCustomAgentUrl] = useState('');
+  const [voiceGender, setVoiceGender] = useState('Female');
+  const [language, setLanguage] = useState('English');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const router = useRouter();
@@ -36,7 +38,11 @@ const CreateAgentPage = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ url: urlToSubmit }),
+        body: JSON.stringify({ 
+          url: urlToSubmit,
+          voice_gender: voiceGender,
+          language: language
+        }),
       });
 
       if (response.ok) {
@@ -201,6 +207,49 @@ const CreateAgentPage = () => {
       fontSize: '0.95rem',
       outline: 'none',
     },
+    select: {
+      flex: 1,
+      padding: '0.875rem 0 0.875rem 0.5rem',
+      border: 'none',
+      backgroundColor: 'transparent',
+      color: 'white',
+      fontSize: '0.95rem',
+      outline: 'none',
+      cursor: 'pointer',
+      appearance: 'none',
+      WebkitAppearance: 'none',
+      MozAppearance: 'none',
+    },
+    selectWrapper: {
+      position: 'relative',
+      display: 'flex',
+      alignItems: 'center',
+      width: '100%',
+    },
+    chevronIcon: {
+      position: 'absolute',
+      right: '0.875rem',
+      pointerEvents: 'none',
+    },
+    selectOption: {
+      backgroundColor: '#1a1a1a',
+      color: 'white',
+    },
+    label: {
+      fontSize: '0.875rem',
+      fontWeight: '600',
+      color: '#d4af37',
+      marginBottom: '0.5rem',
+      display: 'block',
+      textAlign: 'left',
+    },
+    helperText: {
+      fontSize: '0.75rem',
+      color: 'rgba(255, 255, 255, 0.5)',
+      marginTop: '0.4rem',
+      textAlign: 'left',
+      fontStyle: 'italic',
+    },
     button: {
       padding: '0.875rem 1.75rem',
       borderRadius: '10px',
@@ -314,31 +363,105 @@ const CreateAgentPage = () => {
             Create Your <span style={styles.titleGold}>Own Agent</span>
           </h1>
           <p style={styles.subtitle}>
-            Provide your website URL, and our AI will learn its content to build a knowledgeable agent for you.
+            Customize your AI voice agent by selecting language, voice, and providing your website URL.
           </p>
           
           <form onSubmit={handleCustomAgentSubmit} style={styles.form}>
-            <div 
-              style={styles.inputWrapper}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.5)';
-                e.currentTarget.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.2)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
-              <Globe size={18} color="#d4af37" style={{ marginRight: '0.5rem' }} />
-              <span style={styles.prefix}>https://</span>
-              <input
-                type="text"
-                value={customAgentUrl}
-                onChange={(e) => setCustomAgentUrl(e.target.value)}
-                placeholder="your-website.com"
-                style={styles.input}
-                required
-              />
+            {/* Website URL */}
+            <div>
+              <label style={styles.label}>
+                <Globe size={16} style={{ display: 'inline', marginRight: '0.5rem' }} />
+                Website URL
+              </label>
+              <div 
+                style={styles.inputWrapper}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.5)';
+                  e.currentTarget.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                <span style={styles.prefix}>https://</span>
+                <input
+                  type="text"
+                  value={customAgentUrl}
+                  onChange={(e) => setCustomAgentUrl(e.target.value)}
+                  placeholder="your-website.com"
+                  style={styles.input}
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Gender Selection */}
+            <div>
+              <label style={styles.label}>
+                <User size={16} style={{ display: 'inline', marginRight: '0.5rem' }} />
+                Voice Gender
+              </label>
+              <div 
+                style={styles.inputWrapper}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.5)';
+                  e.currentTarget.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                <div style={styles.selectWrapper}>
+                  <select
+                    value={voiceGender}
+                    onChange={(e) => setVoiceGender(e.target.value)}
+                    style={styles.select}
+                  >
+                    <option value="Male" style={styles.selectOption}>Male</option>
+                    <option value="Female" style={styles.selectOption}>Female</option>
+                  </select>
+                  <ChevronDown size={18} color="#d4af37" style={styles.chevronIcon} />
+                </div>
+              </div>
+              <p style={styles.helperText}>
+                Voice: {voiceGender === 'Male' 
+                  ? (language === 'Arabic' ? 'Abu Salem' : 'Terrence')
+                  : (language === 'Arabic' ? 'Sana' : 'Jessica')
+                }
+              </p>
+            </div>
+
+            {/* Language Selection */}
+            <div>
+              <label style={styles.label}>
+                <Languages size={16} style={{ display: 'inline', marginRight: '0.5rem' }} />
+                Language
+              </label>
+              <div 
+                style={styles.inputWrapper}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.5)';
+                  e.currentTarget.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                <div style={styles.selectWrapper}>
+                  <select
+                    value={language}
+                    onChange={(e) => setLanguage(e.target.value)}
+                    style={styles.select}
+                  >
+                    <option value="English" style={styles.selectOption}>English</option>
+                    <option value="Arabic" style={styles.selectOption}>Arabic</option>
+                  </select>
+                  <ChevronDown size={18} color="#d4af37" style={styles.chevronIcon} />
+                </div>
+              </div>
             </div>
             <button 
               type="submit" 
